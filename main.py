@@ -1,0 +1,79 @@
+import random
+def ejercicio1():
+        nombres=["alejandro","maria","fernando","frick","mati","chamorrito","juan","demian","sapir","thiago"]
+        mayor=nombres[0]
+        for x in nombres:
+         if len(x)>len(mayor):
+                mayor=x
+                print(f"el nombre con mas caracteres es: ",{mayor})
+
+
+def ejercicio2():
+    nombres = ["alejandro", "maria", "fernando", "frick", "mati", "chamorrito", "juan", "demian", "sapir", "thiago"]
+    vocales="aeiouAEIOU"
+    contador_vocales=0
+    for palabra in nombres:
+           for letra in palabra:
+            if letra in vocales:
+             contador_vocales+=1
+    print(f"cantidad total de vocales en todas las palabras:",contador_vocales)
+
+def ejercicio3():
+    numeros=[10,20,30,40,50,60]
+    factor=[3]
+    resultados = []
+    for x in range(0, len(numeros)):
+        for y in range(0, len(factor)):
+            operacion = numeros[x] * factor[y]
+            resultados.append(operacion)
+    print(resultados)
+
+def dar_carta():
+        posiblesNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+        posiblesPalos = ["Corazones", "Diamantes", "Tréboles", "Picas"]
+        carta = []
+        # -------------------------------------------------- #
+        aleatorio = random.randint(0, 12)
+        carta.append(posiblesNumeros[aleatorio])
+        # -------------------------------------------------- #
+        aleatorio = random.randint(0, 3)
+        carta.append(posiblesPalos[aleatorio])
+        # -------------------------------------------------- #
+        return carta
+
+mano = []
+def generar_mano_y_valor():
+        for x in range(0,8):
+            mano.append(dar_carta())
+        print(mano)
+def descartar_cartas():
+    cantidad_a_descartar=int(input("ingrese la cantidad de cartas que quiere descartar: "))
+    for x in range(cantidad_a_descartar):
+        carta_a_descartar=int(input("ingrese la posicion de la carta que quiere descartar: "))
+        mano[carta_a_descartar-1]=dar_carta()
+    print(mano)
+def juego():
+    while True:
+
+        print(f"""
+
+            |==================|
+            |                  |
+            | 1)dar mano       |
+            |                  |
+            | 3) descartar     |
+            |                  |
+            | 2)dejar de jugar |  
+            |                  |
+            |==================|    
+            """)
+        opcion = int(input("ingrese una opcion: "))
+        if opcion == 1:
+            generar_mano_y_valor()
+        elif opcion == 2:
+            descartar_cartas()
+        elif opcion==3:
+            break
+        else:
+            print(" ingresa una opcion valida")
+juego()
